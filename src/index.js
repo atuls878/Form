@@ -3,12 +3,29 @@ window.addEventListener("load", function () {
     .then((response) => response.blob())
     .then((blob) => readXlsxFile(blob))
     .then((rows) => {
-      updateDropDown(rows);
+      updateRows(rows);
     });
 });
 
 let obj = {};
 let poObj = {};
+
+function updateRows(rows) {
+  for (let i = 1; i < rows.length; i++) {
+    let supplierName = rows[i][11],
+      poNumber = rows[i][3],
+      description = rows[i][15];
+
+    if (supplierName == null) {
+      rows[i][11] = rows[i - 1][11];
+    }
+
+    if (poNumber == null) {
+      rows[i][3] = rows[i - 1][3];
+    }
+  }
+  updateDropDown(rows);
+}
 
 function updateDropDown(rows) {
   let suppliers = [];
@@ -34,7 +51,13 @@ function updateDropDown(rows) {
       if (obj[supplierName].indexOf(poNumber) == -1) {
         obj[supplierName].push(poNumber);
       }
-      poObj[poNumber] = description;
+    
+      if (poObj[poNumber] == undefined && description != null) poObj[poNumber] = description.toString();
+
+      if (description != null && poObj[poNumber].indexOf(description) == -1 ) {
+        poObj[poNumber] += `, ${description}`;
+      }
+      
     }
   }
   suppliers.map((value) => updateOptions("supplier", value));
