@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Parshav</title>
+  </head>
+  <body>
+    <div id="mainContainer">
+      <form id="formComponent">
+        <div id="names">
+          <label>Name</label>
+          <label>Start Time </label>
+          <label>End Time </label>
+          <label>No. of Hours Worked </label>
+          <label>Rate per Hour </label>
+          <label>Supplier Name</label>
+          <label>Purchase Order</label>
+        </div>
+        <div id="inputFields">
+          <input id="name" type="text" />
+          <input id="startTime" type="text" />
+          <input id="endTime" type="text" />
+          <input id="hours" type="text" />
+          <input id="rate" type="text" />
+
+          <select id="supplier">
+            <option>Select Supplier Name</option>
+          </select>
+
+          <select id="poNumber">
+            <option>Select PO Number</option>
+          </select>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <script src="https://unpkg.com/read-excel-file@5.x/bundle/read-excel-file.min.js"></script>
+    <script src="https://unpkg.com/write-excel-file@1.x/bundle/write-excel-file.min.js"></script>
+
+    <script src="index.js"></script>
+  </body>
+</html>
